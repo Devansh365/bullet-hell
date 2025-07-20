@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cynr3to5n7ob7"]
+
+[ext_resource type="Script" uid="uid://xtsfi7qwcswf" path="res://bullet_2.gd" id="1_tucj7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_glnxn"]
+
+[node name="bullet2" type="Area2D"]
+script = ExtResource("1_tucj7")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.701961, 0.2, 0.701961, 1)
+polygon = PackedVector2Array(-8, -6, -10, -1, -9, 4, -6, 8, -1, 10, 4, 9, 8, 6, 10, 2, 9, -4, 6, -8, 1, -10, -4, -9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_glnxn")

@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8g0572wsjvd4"]
+
+[ext_resource type="PackedScene" uid="uid://bnlvw7h670ugb" path="res://player.tscn" id="2_jt8k5"]
+[ext_resource type="Script" uid="uid://bx7uihi8qm7th" path="res://mana.gd" id="3_781r1"]
+[ext_resource type="Texture2D" uid="uid://dape6csmsbkd5" path="res://mana bar bg.png" id="4_t4ama"]
+[ext_resource type="Texture2D" uid="uid://ppqsu5xtxsvp" path="res://mana bar.png" id="5_aodfv"]
+[ext_resource type="Texture2D" uid="uid://b88nf1tx0x1o0" path="res://blackbg.png" id="5_t4ama"]
+
+[node name="main" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="mana" type="ProgressBar" parent="CanvasLayer"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -125.0
+offset_bottom = 68.0
+grow_horizontal = 0
+
+[node name="manabar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+offset_top = 68.0
+offset_right = 238.0
+offset_bottom = 124.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("4_t4ama")
+texture_progress = ExtResource("5_aodfv")
+script = ExtResource("3_781r1")
+player = NodePath("../../player")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(736, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(584.25, 427.5)
+scale = Vector2(12.1286, 9.22115)
+texture = ExtResource("5_t4ama")
+
+[node name="player" parent="." instance=ExtResource("2_jt8k5")]
+scale = Vector2(0.345, 0.345)
