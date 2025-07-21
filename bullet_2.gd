@@ -12,3 +12,8 @@ func _process(delta: float) -> void:
 	global_position += direction * speed
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("boss"):
+		
+		Signalmanager.bullet2hitboss.emit()
+		queue_free()

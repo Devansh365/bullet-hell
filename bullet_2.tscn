@@ -13,3 +13,5 @@ polygon = PackedVector2Array(-8, -6, -10, -1, -9, 4, -6, 8, -1, 10, 4, 9, 8, 6, 
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_glnxn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

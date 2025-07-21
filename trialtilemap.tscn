@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs8ssjvu48qkw"]
+
+[ext_resource type="Texture2D" uid="uid://b88nf1tx0x1o0" path="res://blackbg.png" id="1_xok64"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_466oc"]
+size = Vector2(104, 104)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bm31e"]
+polygon = PackedVector2Array(52, -52, 52, 52, -52, 52, -52, -52)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xok64")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+shape = SubResource("RectangleShape2D_466oc")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+occluder = SubResource("OccluderPolygon2D_bm31e")

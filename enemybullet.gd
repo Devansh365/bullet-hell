@@ -16,8 +16,6 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("boss"):
-		
-		Signalmanager.bullet1hitboss.emit()
+	if body.is_in_group("player"):
+		Signalmanager.playerbullet1hit.emit()
 		queue_free()
-	

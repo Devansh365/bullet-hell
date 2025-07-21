@@ -1,10 +1,72 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8g0572wsjvd4"]
+[gd_scene load_steps=13 format=3 uid="uid://b8g0572wsjvd4"]
 
 [ext_resource type="PackedScene" uid="uid://bnlvw7h670ugb" path="res://player.tscn" id="2_jt8k5"]
 [ext_resource type="Script" uid="uid://bx7uihi8qm7th" path="res://mana.gd" id="3_781r1"]
 [ext_resource type="Texture2D" uid="uid://dape6csmsbkd5" path="res://mana bar bg.png" id="4_t4ama"]
 [ext_resource type="Texture2D" uid="uid://ppqsu5xtxsvp" path="res://mana bar.png" id="5_aodfv"]
 [ext_resource type="Texture2D" uid="uid://b88nf1tx0x1o0" path="res://blackbg.png" id="5_t4ama"]
+[ext_resource type="PackedScene" uid="uid://bxvkols3ds25" path="res://boss.tscn" id="6_aodfv"]
+[ext_resource type="Script" uid="uid://cxtroyyhiv8wj" path="res://boss_health_bar.gd" id="6_om1xv"]
+[ext_resource type="Script" uid="uid://bfve0e32v1tew" path="res://playerhealth.gd" id="7_om1xv"]
+
+[sub_resource type="Gradient" id="Gradient_v7e8e"]
+offsets = PackedFloat32Array(0.138965, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.399672, 0.000472211, 0.493835, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_om1xv"]
+gradient = SubResource("Gradient_v7e8e")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v7e8e"]
+texture = ExtResource("5_t4ama")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_om1xv"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_v7e8e")
 
 [node name="main" type="Node2D"]
 
@@ -20,9 +82,11 @@ offset_bottom = 68.0
 grow_horizontal = 0
 
 [node name="manabar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
-offset_top = 68.0
-offset_right = 238.0
-offset_bottom = 124.0
+anchors_preset = -1
+anchor_left = 0.0286458
+anchor_top = 0.0679012
+anchor_right = 0.342014
+anchor_bottom = 0.114198
 nine_patch_stretch = true
 stretch_margin_left = 4
 stretch_margin_top = 4
@@ -32,17 +96,69 @@ texture_under = ExtResource("4_t4ama")
 texture_progress = ExtResource("5_aodfv")
 script = ExtResource("3_781r1")
 player = NodePath("../../player")
+metadata/_edit_use_anchors_ = true
+
+[node name="boss health bar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("boss")]
+anchors_preset = -1
+anchor_left = 0.0286458
+anchor_top = 0.865741
+anchor_right = 0.986111
+anchor_bottom = 0.95216
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_t4ama")
+texture_progress = ExtResource("5_aodfv")
+texture_progress_offset = Vector2(20, 2)
+script = ExtResource("6_om1xv")
+boss = NodePath("../../boss")
+metadata/_edit_use_anchors_ = true
+
+[node name="playerhealth" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+anchors_preset = -1
+anchor_left = 0.0286458
+anchor_top = 0.114198
+anchor_right = 0.342014
+anchor_bottom = 0.174383
+value = 20.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("4_t4ama")
+texture_progress = ExtResource("5_aodfv")
+script = ExtResource("7_om1xv")
+player = NodePath("../../player")
+metadata/_edit_use_anchors_ = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0, 0)
 motion_mirroring = Vector2(736, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(584.25, 427.5)
+position = Vector2(489, 384)
 scale = Vector2(12.1286, 9.22115)
 texture = ExtResource("5_t4ama")
 
 [node name="player" parent="." instance=ExtResource("2_jt8k5")]
+position = Vector2(415, 246)
 scale = Vector2(0.345, 0.345)
+
+[node name="boss" parent="." instance=ExtResource("6_aodfv")]
+position = Vector2(523.885, 325)
+scale = Vector2(0.505, 0.505)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(168, 457)
+scale = Vector2(338.5, 124.5)
+texture = SubResource("GradientTexture2D_om1xv")
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(0.63, 0.63)
+tile_set = SubResource("TileSet_om1xv")
+format = 2
+layer_0/tile_data = PackedInt32Array(524359, 0, 0, 524358, 0, 0, 524357, 0, 0, 524356, 0, 0, 524355, 0, 0, 524354, 0, 0, 524353, 0, 0, 524352, 0, 0, 524351, 0, 0, 524350, 0, 0, 524349, 0, 0, 524348, 0, 0, 524347, 0, 0, 524346, 0, 0, 524345, 0, 0, 524344, 0, 0, 524343, 0, 0, 524342, 0, 0, 524341, 0, 0, 524340, 0, 0, 524339, 0, 0, 524338, 0, 0, 524337, 0, 0, 524336, 0, 0, 524335, 0, 0, 524334, 0, 0, 524333, 0, 0, 524332, 0, 0, 524331, 0, 0, 524330, 0, 0, 524329, 0, 0, 524328, 0, 0, 524327, 0, 0, 524326, 0, 0, 589862, 0, 0, 589861, 0, 0, 589860, 0, 0, 589859, 0, 0, 589858, 0, 0, 589857, 0, 0, 589856, 0, 0, 589855, 0, 0, 589854, 0, 0, 589853, 0, 0, 589852, 0, 0, 589851, 0, 0, 589850, 0, 0, 589849, 0, 0, 589848, 0, 0, 655384, 0, 0, 655383, 0, 0, 655382, 0, 0, 720918, 0, 0, 720917, 0, 0, 786452, 0, 0, 851987, 0, 0, 851986, 0, 0, 917521, 0, 0, 917520, 0, 0, 917519, 0, 0, 917518, 0, 0, 917517, 0, 0, 983053, 0, 0, 983052, 0, 0, 1048588, 0, 0, 1048587, 0, 0, 1114122, 0, 0, 1179658, 0, 0, 1179657, 0, 0, 1245193, 0, 0, 1245192, 0, 0, 1310728, 0, 0, 1376264, 0, 0, 1441800, 0, 0, 1507336, 0, 0, 1507335, 0, 0, 1572871, 0, 0, 1638407, 0, 0, 1703943, 0, 0, 1703942, 0, 0, 1769478, 0, 0, 1835014, 0, 0, 1900551, 0, 0, 1966087, 0, 0, 2031623, 0, 0, 2097159, 0, 0, 2162695, 0, 0, 2228231, 0, 0, 2293767, 0, 0, 2359303, 0, 0, 2424839, 0, 0, 2490375, 0, 0, 2555911, 0, 0, 2621448, 0, 0, 2686984, 0, 0, 2752520, 0, 0, 2818056, 0, 0, 2883592, 0, 0, 2949128, 0, 0, 2949129, 0, 0, 3014665, 0, 0, 3080202, 0, 0, 3145738, 0, 0, 3145739, 0, 0, 3211275, 0, 0, 3276811, 0, 0, 3276812, 0, 0, 3342348, 0, 0, 3407885, 0, 0, 3473422, 0, 0, 3538959, 0, 0, 3604495, 0, 0, 3604496, 0, 0, 3604497, 0, 0, 3670033, 0, 0, 3670034, 0, 0, 3670035, 0, 0, 3670036, 0, 0, 3670037, 0, 0, 3670038, 0, 0, 3735574, 0, 0, 3735575, 0, 0, 3735576, 0, 0, 3735577, 0, 0, 3735578, 0, 0, 3735579, 0, 0, 3735580, 0, 0, 3735581, 0, 0, 3735582, 0, 0, 3735583, 0, 0, 3735584, 0, 0, 3735585, 0, 0, 3735586, 0, 0, 3735587, 0, 0, 3735588, 0, 0, 3735589, 0, 0, 3735590, 0, 0, 3735591, 0, 0, 3735592, 0, 0, 3735593, 0, 0, 3735594, 0, 0, 3735595, 0, 0, 3735596, 0, 0, 3735597, 0, 0, 3735598, 0, 0, 3735599, 0, 0, 3735600, 0, 0, 3735601, 0, 0, 3735602, 0, 0, 3735603, 0, 0, 3735604, 0, 0, 3735605, 0, 0, 3735606, 0, 0, 3735607, 0, 0, 3735608, 0, 0, 3735609, 0, 0, 3735610, 0, 0, 3735611, 0, 0, 3735612, 0, 0, 3735613, 0, 0, 3735614, 0, 0, 3735615, 0, 0, 3735616, 0, 0, 3735617, 0, 0, 3735618, 0, 0, 3735619, 0, 0, 3735620, 0, 0, 3735621, 0, 0, 3735622, 0, 0, 3670087, 0, 0, 3670088, 0, 0, 3670089, 0, 0, 3670090, 0, 0, 3670091, 0, 0, 3670092, 0, 0, 3670093, 0, 0, 3670094, 0, 0, 3670095, 0, 0, 3670096, 0, 0, 3670097, 0, 0, 3670098, 0, 0, 3670099, 0, 0, 3670100, 0, 0, 3604564, 0, 0, 3604565, 0, 0, 3604566, 0, 0, 3539031, 0, 0, 3539032, 0, 0, 3473497, 0, 0, 3473498, 0, 0, 3407962, 0, 0, 3407963, 0, 0, 3342428, 0, 0, 3276892, 0, 0, 3276893, 0, 0, 3211357, 0, 0, 3211358, 0, 0, 3145822, 0, 0, 3145823, 0, 0, 3080287, 0, 0, 3014752, 0, 0, 2949216, 0, 0, 2883681, 0, 0, 2818145, 0, 0, 2752609, 0, 0, 2687073, 0, 0, 2687074, 0, 0, 2621538, 0, 0, 2556002, 0, 0, 2490466, 0, 0, 2424930, 0, 0, 2359394, 0, 0, 2293858, 0, 0, 2228322, 0, 0, 2162786, 0, 0, 2097250, 0, 0, 2031714, 0, 0, 1966178, 0, 0, 1900642, 0, 0, 1835106, 0, 0, 1769570, 0, 0, 1704034, 0, 0, 1638498, 0, 0, 1572962, 0, 0, 1507426, 0, 0, 1441890, 0, 0, 1376354, 0, 0, 1310818, 0, 0, 1245282, 0, 0, 1245281, 0, 0, 1179745, 0, 0, 1114209, 0, 0, 1048673, 0, 0, 1048672, 0, 0, 983136, 0, 0, 983135, 0, 0, 917598, 0, 0, 852061, 0, 0, 852060, 0, 0, 786524, 0, 0, 786523, 0, 0, 720986, 0, 0, 720985, 0, 0, 720984, 0, 0, 655448, 0, 0, 655447, 0, 0, 655446, 0, 0, 589910, 0, 0, 589909, 0, 0, 589908, 0, 0, 589907, 0, 0, 589906, 0, 0, 589905, 0, 0, 589904, 0, 0, 589903, 0, 0, 524367, 0, 0, 524366, 0, 0, 524365, 0, 0, 524364, 0, 0, 524363, 0, 0, 524362, 0, 0, 524361, 0, 0, 524360, 0, 0, 589889, 0, 0, 589888, 0, 0, 589887, 0, 0, 589886, 0, 0, 589885, 0, 0, 589884, 0, 0)

@@ -15,9 +15,18 @@ run/main_scene="uid://b8g0572wsjvd4"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Signalmanager="*res://signalmanager/signalmanager.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
+
+[global_group]
+
+boss=""
+player=""
 
 [input]
 

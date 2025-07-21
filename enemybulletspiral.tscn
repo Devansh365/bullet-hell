@@ -1,17 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqxj3dyrilqnq"]
+[gd_scene load_steps=3 format=3 uid="uid://cnsx4y87ce8o4"]
 
-[ext_resource type="Script" uid="uid://dp2u156nagtxc" path="res://bullet_1.gd" id="1_hsp2q"]
+[ext_resource type="Script" uid="uid://ov7lxasmakub" path="res://enemybulletspiral.gd" id="1_tqfbw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kdfmp"]
 
-[node name="bullet" type="Area2D"]
-script = ExtResource("1_hsp2q")
+[node name="enemybullet" type="Area2D"]
+scale = Vector2(0.53, 0.53)
+script = ExtResource("1_tqfbw")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.501407, 0.501406, 0.501406, 1)
+scale = Vector2(0.685, 0.685)
+color = Color(0.107093, 0.785033, 0.768467, 1)
 polygon = PackedVector2Array(-8, -6, -10, -1, -9, 4, -6, 8, -1, 10, 4, 9, 8, 6, 10, 2, 9, -4, 6, -8, 1, -10, -4, -9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.685, 0.685)
 shape = SubResource("CircleShape2D_kdfmp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
