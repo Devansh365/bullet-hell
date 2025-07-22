@@ -7,6 +7,7 @@ var health = 150
 var max_health = 150
 signal healthchanged
 @onready var bullethole_2: Node2D = $bullethole2
+var halfhealthboss = 0
 
 var enemybullet = preload("res://enemybullet.tscn")
 var bullet_scene = preload("res://enemybulletspiral.tscn")
@@ -69,6 +70,10 @@ func _physics_process(delta: float) -> void:
 	if health == 0:
 		queue_free()
 	healthchanged.emit()
+	if health <= max_health/5:
+		halfhealthboss = 1
+		
+	
 
 func bullet1():
 	health -= 10
@@ -103,10 +108,13 @@ func _on_spiral_timer_timeout():
 	get_tree().root.add_child(b)
 	
 func someattackdone():
-	var shoot12 = somebullet.instantiate()
-	shoot12.global_position = bullethole.global_position
-	shoot12.direction = (player.global_position - global_position).normalized()
-	$/root/main.add_child(shoot12)
+	if halfhealthboss == 1:
+		print(halfhealthboss)
+		var shoot12 = somebullet.instantiate()
+		shoot12.global_position = bullethole.global_position
+		shoot12.direction = (player.global_position - global_position).normalized()
+		$/root/main.add_child(shoot12)
+
 	
 
 	

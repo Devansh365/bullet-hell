@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 Signalmanager="*res://signalmanager/signalmanager.gd"
 
+[display]
+
+window/size/mode=3
+window/stretch/mode="viewport"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
@@ -70,3 +75,7 @@ shoot={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":51,"key_label":0,"unicode":51,"location":0,"echo":false,"script":null)
 ]
 }
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

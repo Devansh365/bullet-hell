@@ -10,12 +10,12 @@ const SPEED = 400.0
 signal healthchanged
 @onready var gun = $gun
 @onready var bullethole = $bullethole
-var max_mana = 150
+var max_mana = 1500
 signal manachanged
-var mana = 150
+var mana = 1500
 var mana_regen_timer := 0.0
-var player_health = 100
-var max_health = 100
+var player_health = 1000
+var max_health = 1000
 func _ready() -> void:
 	Signalmanager.playerbullet1hit.connect(playerbullet1hit)
 	Signalmanager.playerspiralbullethit.connect(playerspiralbullethit)

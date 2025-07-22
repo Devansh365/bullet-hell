@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxvkols3ds25"]
+[gd_scene load_steps=11 format=3 uid="uid://bxvkols3ds25"]
 
 [ext_resource type="Script" uid="uid://bbq4u78ek05mp" path="res://boss.gd" id="1_0bnu1"]
+[ext_resource type="Texture2D" uid="uid://baxivd4ofg7w3" path="res://syntax assets/monster/void.png" id="2_6xxrv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mihky"]
 radius = 71.1758
@@ -63,10 +64,10 @@ script = ExtResource("1_0bnu1")
 shape = SubResource("CircleShape2D_mihky")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-4, -80, -78, -2, -5, 73, 75, 4)
 
 [node name="bullethole" type="Node2D" parent="."]
-position = Vector2(100.2, 0)
 
 [node name="bullethole2" type="Node2D" parent="."]
 position = Vector2(81.715, 0)
@@ -84,3 +85,8 @@ position = Vector2(-38.165, 0)
 libraries = {
 &"": SubResource("AnimationLibrary_skx2t")
 }
+
+[node name="Void" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, -2.86102e-06)
+scale = Vector2(4.285, 4.285)
+texture = ExtResource("2_6xxrv")

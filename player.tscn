@@ -22,3 +22,6 @@ polygon = PackedVector2Array(56, -27, 113, -27, 115, -11, 74, -11, 74, 7, 54, 7)
 
 [node name="bullethole" type="Node2D" parent="."]
 position = Vector2(110, -20)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.235, 1.235)
