@@ -1,7 +1,102 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj54xhydi4l6"]
+[gd_scene load_steps=10 format=3 uid="uid://bj54xhydi4l6"]
 
 [ext_resource type="PackedScene" uid="uid://bnlvw7h670ugb" path="res://player.tscn" id="1_6rtrq"]
+[ext_resource type="Texture2D" uid="uid://7syv4shu02wc" path="res://syntax assets/bars/progress/empty.png" id="2_aphw2"]
+[ext_resource type="Texture2D" uid="uid://byuo7y4xnyboq" path="res://syntax assets/bars/progress/full.png" id="3_yy3ue"]
+[ext_resource type="Script" uid="uid://bx7uihi8qm7th" path="res://mana.gd" id="4_ir5pn"]
+[ext_resource type="Script" uid="uid://bfve0e32v1tew" path="res://playerhealth.gd" id="8_sp331"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_mvk4i"]
+
+[sub_resource type="Animation" id="Animation_dmcob"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("afterdeath:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0509804, 0.00392157, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t4vpw"]
+resource_name = "afterdeathboss"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("afterdeath:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.88),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0509804, 0.00392157, 0, 0), Color(0.0509804, 0.00392157, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_drvrq"]
+_data = {
+&"RESET": SubResource("Animation_dmcob"),
+&"afterdeathboss": SubResource("Animation_t4vpw")
+}
 
 [node name="Node2D" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_6rtrq")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="manabar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+anchors_preset = -1
+anchor_left = 0.0286458
+anchor_right = 0.286458
+anchor_bottom = 0.186728
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("2_aphw2")
+texture_progress = ExtResource("3_yy3ue")
+script = ExtResource("4_ir5pn")
+player = NodePath("../../player")
+metadata/_edit_use_anchors_ = true
+
+[node name="playerhealth" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+anchors_preset = -1
+anchor_left = 0.710938
+anchor_right = 0.978299
+anchor_bottom = 0.16358
+grow_horizontal = 0
+value = 20.0
+fill_mode = 1
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("2_aphw2")
+texture_progress = ExtResource("3_yy3ue")
+script = ExtResource("8_sp331")
+player = NodePath("../../player")
+metadata/_edit_use_anchors_ = true
+
+[node name="afterdeath" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(0.0509804, 0.00392157, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_mvk4i")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_drvrq")
+}

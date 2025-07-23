@@ -48,11 +48,6 @@ tracks/2/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_0bnu1"]
-resource_name = "spiralnode"
-length = 5.574
-loop_mode = 1
-
 [sub_resource type="Animation" id="Animation_lnbgr"]
 resource_name = "blink"
 length = 1.83
@@ -93,6 +88,11 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 5), Vector2(0, 0)]
 }
+
+[sub_resource type="Animation" id="Animation_0bnu1"]
+resource_name = "spiralnode"
+length = 5.574
+loop_mode = 1
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_skx2t"]
 _data = {
