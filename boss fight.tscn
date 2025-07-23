@@ -184,7 +184,7 @@ offset_left = -125.0
 offset_bottom = 68.0
 grow_horizontal = 0
 
-[node name="manabar" type="TextureProgressBar" parent="CanvasLayer"]
+[node name="manabar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
 anchors_preset = -1
 anchor_left = 0.0286458
 anchor_right = 0.286458
@@ -197,6 +197,7 @@ stretch_margin_bottom = 4
 texture_under = ExtResource("4_dmcob")
 texture_progress = ExtResource("5_drvrq")
 script = ExtResource("3_781r1")
+player = NodePath("../../player")
 metadata/_edit_use_anchors_ = true
 
 [node name="boss health bar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("boss")]
@@ -217,7 +218,7 @@ script = ExtResource("6_om1xv")
 boss = NodePath("../../boss")
 metadata/_edit_use_anchors_ = true
 
-[node name="playerhealth" type="TextureProgressBar" parent="CanvasLayer"]
+[node name="playerhealth" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
 anchors_preset = -1
 anchor_left = 0.710938
 anchor_right = 0.978299
@@ -233,6 +234,7 @@ stretch_margin_bottom = 4
 texture_under = ExtResource("4_dmcob")
 texture_progress = ExtResource("5_drvrq")
 script = ExtResource("7_om1xv")
+player = NodePath("../../player")
 metadata/_edit_use_anchors_ = true
 
 [node name="afterdeath" type="TextureRect" parent="CanvasLayer"]

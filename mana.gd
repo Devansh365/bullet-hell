@@ -8,5 +8,4 @@ func _ready():
 		update()
 
 func update():
-	if player:
-		value = player.mana  
+	value = player.mana * 100/ player.max_mana
