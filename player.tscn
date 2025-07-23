@@ -76,6 +76,8 @@ _data = {
 }
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]

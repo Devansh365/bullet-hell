@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh5253mov3770"]
+
+[ext_resource type="Texture2D" uid="uid://fgcy5x8w3bim" path="res://assets/skeleton.png" id="1_crlql"]
+[ext_resource type="Script" uid="uid://ce3c5shoin6jn" path="res://skeleton.gd" id="1_plk42"]
+[ext_resource type="Script" uid="uid://cs7beqfo4jyjh" path="res://enemeya.gd" id="2_r6xse"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_plk42"]
+radius = 6.0
+height = 24.0
+
+[node name="Skeleton" type="Node2D"]
+script = ExtResource("1_plk42")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_mask = 2049
+script = ExtResource("2_r6xse")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_plk42")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_crlql")

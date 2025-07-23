@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://5tj4qcl53bbb"]
+
+[ext_resource type="AudioStream" uid="uid://bp6jfgjrfjl45" path="res://arpe8_2.wav" id="1_auxjy"]
+
+[node name="normal" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_auxjy")
+autoplay = true

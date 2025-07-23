@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://drqgkpf0g83dw"
+path="res://.godot/imported/syntax game normal battle (1).mp3-5b602dbaa15ef3faa4b576e7dc32f1f0.mp3str"
+
+[deps]
+
+source_file="res://syntax game normal battle (1).mp3"
+dest_files=["res://.godot/imported/syntax game normal battle (1).mp3-5b602dbaa15ef3faa4b576e7dc32f1f0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

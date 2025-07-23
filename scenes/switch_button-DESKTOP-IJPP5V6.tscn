@@ -1,0 +1,242 @@
+[gd_scene load_steps=14 format=3 uid="uid://5mg70vdjxhng"]
+
+[sub_resource type="GDScript" id="GDScript_kywey"]
+script/source = "extends StaticBody3D
+@onready var factoy_quest: Quest = $\"../../tree/Factoy-quest\"
+@onready var xpvalue_3: RichTextLabel = %xpvalue3
+@onready var progress_bar_3: ProgressBar = %ProgressBar3
+
+signal switchoff
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+
+	#Dialogic.signal_event.connect(_on_dialogic_signal)
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+func interact():
+	factoy_quest.finished_goal()
+	progress_bar_3.value+=50
+	xpvalue_3.text=str(int(int(xpvalue_3.text) + 1))
+	#get_node(\"/root/\" + get_tree().current_scene.name + \"/the_hero\").velocity.x = 0
+	#get_node(\"/root/\" + get_tree().current_scene.name + \"/the_hero\").velocity.z = 0
+	#get_node(\"/root/\" + get_tree().current_scene.name + \"/the_hero\").canmove = false
+	#Dialogic.start(\"elder tree\")
+	$Node3D/AnimationPlayer.play(\"off\")
+	emit_signal(\"switchoff\")
+	await get_tree().create_timer(3.0).timeout
+	queue_free()	
+
+	
+	
+		
+#func _on_dialogic_signal(argument: String):
+	#if argument == \"tree\":
+	#	print(\"yayyaya\")
+	#	get_node(\"/root/\" + get_tree().current_scene.name + \"/the_hero\").canmove = true
+		
+	
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_0fakr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8b0fs"]
+albedo_color = Color(0.398117, 0.485028, 0.836919, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k5ubu"]
+material = SubResource("StandardMaterial3D_8b0fs")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ey1xg"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y4hk3"]
+material = SubResource("StandardMaterial3D_ey1xg")
+
+[sub_resource type="BoxMesh" id="BoxMesh_k5rap"]
+material = SubResource("StandardMaterial3D_8b0fs")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85qsv"]
+albedo_color = Color(0.28485, 0.28485, 0.28485, 1)
+emission_enabled = true
+emission = Color(0.299547, 0.299547, 0.299547, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_ijmon"]
+material = SubResource("StandardMaterial3D_85qsv")
+
+[sub_resource type="Animation" id="Animation_8xp4c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.839538, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.10985, 0.139707)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node3D/MeshInstance3D:mesh:material:emission_enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node3D/MeshInstance3D:mesh:material:emission")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.299547, 0.299547, 0.299547, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node3D/MeshInstance3D:mesh:material:emission_energy_multiplier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [16.0]
+}
+
+[sub_resource type="Animation" id="Animation_11l0i"]
+resource_name = "off"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.839538, 0, 0), Vector3(0.836606, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.10985, 0.139707), Vector3(0, -0.158215, 0.139707)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node3D/MeshInstance3D:mesh:material:emission_enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node3D/MeshInstance3D:mesh:material:emission")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.299547, 0.299547, 0.299547, 1), Color(0.299547, 0.299547, 0.299547, 1), Color(0, 0, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node3D/MeshInstance3D:mesh:material:emission_energy_multiplier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [16.0, 16.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ptvnr"]
+_data = {
+&"RESET": SubResource("Animation_8xp4c"),
+&"off": SubResource("Animation_11l0i")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kgx2g"]
+size = Vector3(0.610779, 1, 0.288818)
+
+[node name="switch button" type="StaticBody3D"]
+script = SubResource("GDScript_kywey")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.667603, 0, 0, 0, 1, 0, 0, 0, 0.171369, 0, 0, 0)
+mesh = SubResource("BoxMesh_0fakr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.403248, 0, 0, 0, 0.839491, 0, 0, 0, 0.171369, 0, 0, 0.10016)
+mesh = SubResource("BoxMesh_k5ubu")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.306822, 0, 0, 0, 0.608855, 0, 0, 0, 0.171369, 0, 0, 0.103161)
+mesh = SubResource("BoxMesh_y4hk3")
+
+[node name="Node3D" type="Node3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.667807, 0.744335, 0, -0.744335, 0.667807, 0, 0.10985, 0.139707)
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Node3D/Node3D"]
+transform = Transform3D(0.0537754, 0, 0, 0, 0.123692, 0, 0, 0, 0.564552, 0, 0, 0.275176)
+mesh = SubResource("BoxMesh_k5rap")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Node3D"]
+transform = Transform3D(0.315, 0, 0, 0, 0.315, 0, 0, 0, 0.315, -0.058458, 0, 0.555667)
+mesh = SubResource("SphereMesh_ijmon")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_ptvnr")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00112915, 0, 0.00549316)
+shape = SubResource("BoxShape3D_kgx2g")

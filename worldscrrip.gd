@@ -1,5 +1,5 @@
 extends Node2D
-
+const b = preload("res://scenes/menu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 func bossdead():
 	$CanvasLayer/AnimationPlayer.play("afterdeathboss")
 	await get_tree().create_timer(4.0).timeout
-	get_tree().quit()
+		get_tree().change_scene_to_packed(b)

@@ -1,19 +1,19 @@
 [gd_scene load_steps=25 format=4 uid="uid://b8g0572wsjvd4"]
 
 [ext_resource type="Script" uid="uid://bwburu3q76cxq" path="res://worldscrrip.gd" id="1_dmcob"]
-[ext_resource type="Texture2D" uid="uid://bpmqm0plhdw6q" path="res://arenaa.png" id="1_f0i4y"]
 [ext_resource type="Texture2D" uid="uid://do4c2u67nttmg" path="res://tilesettttt.png" id="1_om1xv"]
 [ext_resource type="Texture2D" uid="uid://bold45fmtvkja" path="res://syntax assets/tiles/white.png" id="2_f0i4y"]
 [ext_resource type="PackedScene" uid="uid://bnlvw7h670ugb" path="res://player.tscn" id="2_jt8k5"]
 [ext_resource type="Script" uid="uid://bx7uihi8qm7th" path="res://mana.gd" id="3_781r1"]
 [ext_resource type="Texture2D" uid="uid://7syv4shu02wc" path="res://syntax assets/bars/progress/empty.png" id="4_dmcob"]
+[ext_resource type="Texture2D" uid="uid://c3ksqkmyeyywh" path="res://syntax assets/arena.png" id="4_drvrq"]
 [ext_resource type="Texture2D" uid="uid://byuo7y4xnyboq" path="res://syntax assets/bars/progress/full.png" id="5_drvrq"]
 [ext_resource type="PackedScene" uid="uid://bxvkols3ds25" path="res://boss.tscn" id="6_aodfv"]
 [ext_resource type="Script" uid="uid://cxtroyyhiv8wj" path="res://boss_health_bar.gd" id="6_om1xv"]
 [ext_resource type="Script" uid="uid://bfve0e32v1tew" path="res://playerhealth.gd" id="7_om1xv"]
-[ext_resource type="Texture2D" uid="uid://b6qk0b4rpga5x" path="res://raw.png" id="8_om1xv"]
 [ext_resource type="Texture2D" uid="uid://djci7c4mjijuh" path="res://syntax assets/bars/health/empty.png" id="10_r3mjy"]
 [ext_resource type="Texture2D" uid="uid://bmq0atyw4gv78" path="res://syntax assets/bars/health/full.png" id="11_kkftj"]
+[ext_resource type="Texture2D" uid="uid://cctake4l2sxp" path="res://syntax assets/bossfight.png" id="12_dmcob"]
 [ext_resource type="AudioStream" uid="uid://c3eni0m71ogcy" path="res://syntax game boss battle.mp3" id="14_t4vpw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f0i4y"]
@@ -166,9 +166,10 @@ position = Vector2(-42.925, 0)
 tile_map_data = PackedByteArray("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")
 tile_set = SubResource("TileSet_fvwly")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(576, 293)
-texture = ExtResource("1_f0i4y")
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(579, 301.5)
+scale = Vector2(3.42, 3.33667)
+texture = ExtResource("4_drvrq")
 
 [node name="TileMap" type="Node" parent="."]
 
@@ -183,7 +184,7 @@ offset_left = -125.0
 offset_bottom = 68.0
 grow_horizontal = 0
 
-[node name="manabar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+[node name="manabar" type="TextureProgressBar" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.0286458
 anchor_right = 0.286458
@@ -196,7 +197,6 @@ stretch_margin_bottom = 4
 texture_under = ExtResource("4_dmcob")
 texture_progress = ExtResource("5_drvrq")
 script = ExtResource("3_781r1")
-player = NodePath("../../player")
 metadata/_edit_use_anchors_ = true
 
 [node name="boss health bar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("boss")]
@@ -217,7 +217,7 @@ script = ExtResource("6_om1xv")
 boss = NodePath("../../boss")
 metadata/_edit_use_anchors_ = true
 
-[node name="playerhealth" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+[node name="playerhealth" type="TextureProgressBar" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.710938
 anchor_right = 0.978299
@@ -233,7 +233,6 @@ stretch_margin_bottom = 4
 texture_under = ExtResource("4_dmcob")
 texture_progress = ExtResource("5_drvrq")
 script = ExtResource("7_om1xv")
-player = NodePath("../../player")
 metadata/_edit_use_anchors_ = true
 
 [node name="afterdeath" type="TextureRect" parent="CanvasLayer"]
@@ -257,9 +256,9 @@ libraries = {
 motion_scale = Vector2(0.1, 0.1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(558.255, 283)
-scale = Vector2(1.15137, 1)
-texture = ExtResource("8_om1xv")
+position = Vector2(626.5, 459)
+scale = Vector2(5.22333, 4.17333)
+texture = ExtResource("12_dmcob")
 
 [node name="player" parent="." instance=ExtResource("2_jt8k5")]
 position = Vector2(416.935, 246)

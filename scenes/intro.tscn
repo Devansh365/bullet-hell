@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://dt2mnqosvk1hu"]
+
+[ext_resource type="Script" uid="uid://b40mjbs8fpfng" path="res://scripts/intro.gd" id="1_a08qx"]
+
+[sub_resource type="Animation" id="Animation_ryfax"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0f4n6"]
+resource_name = "fadein"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pu167"]
+resource_name = "fadeout"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.00784314), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_03b81"]
+_data = {
+&"RESET": SubResource("Animation_ryfax"),
+&"fadein": SubResource("Animation_0f4n6"),
+&"fadeout": SubResource("Animation_pu167")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_a08qx")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_right = 958.0
+offset_bottom = 540.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ColorRect2"]
+layout_mode = 0
+offset_right = 958.0
+offset_bottom = 538.0
+theme_override_colors/font_color = Color(0.0313726, 1, 0.647059, 1)
+theme_override_font_sizes/font_size = 70
+text = "A Game Made By
+Chaitanya Vaswani"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -67.0
+offset_top = -36.0
+offset_right = 1008.0
+offset_bottom = 612.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_03b81")
+}
+autoplay = "fadein"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(480, 272)
+zoom = Vector2(2, 2)

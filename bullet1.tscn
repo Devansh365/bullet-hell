@@ -22,6 +22,8 @@ scale_max = 0.07
 
 [node name="bullet" type="Area2D"]
 scale = Vector2(0.86, 0.86)
+collision_layer = 2049
+collision_mask = 2049
 script = ExtResource("1_hsp2q")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
