@@ -6,3 +6,4 @@ signal bullet3hitboss
 signal playerhit1
 signal playerbullet1hit
 signal playerspiralbullethit
+signal bossdead

@@ -1,21 +1,21 @@
 extends CharacterBody2D
 
-@export var speed = 400
+@export var speed = 300
 var bullet_scene = preload("res://bullet1.tscn")
 var bullet_scene3 = preload("res://bullet3.tscn")
 var bullet_scene2 = preload("res://bullet_2.tscn")
 var weapon = 1
 
-const SPEED = 400.0
+const SPEED = 300.0
 signal healthchanged
 @onready var gun = $gun
 @onready var bullethole = $bullethole
-var max_mana = 1500
+var max_mana = 300
 signal manachanged
-var mana = 1500
+var mana = 300
 var mana_regen_timer := 0.0
-var player_health = 1000
-var max_health = 1000
+var player_health = 100
+var max_health = 100
 func _ready() -> void:
 	Signalmanager.playerbullet1hit.connect(playerbullet1hit)
 	Signalmanager.playerspiralbullethit.connect(playerspiralbullethit)
@@ -46,23 +46,24 @@ func _physics_process(delta: float) -> void:
 				var bullet = bullet_scene.instantiate()
 				bullet.global_position = bullethole.global_position
 				bullet.direction = (get_global_mouse_position() - global_position).normalized()
-				$/root/main.add_child(bullet)
+				get_tree().current_scene.add_child(bullet)
+
 				mana -= 20
 				
 		if weapon == 2:
-			if mana >= 20:
+			if mana >= 40:
 				var bullet2 = bullet_scene2.instantiate()
 				bullet2.global_position = bullethole.global_position
 				bullet2.direction = (get_global_mouse_position() - global_position).normalized()
-				$/root/main.add_child(bullet2)
-				mana -= 20
+				get_tree().current_scene.add_child(bullet2)
+				mana -= 40
 		if weapon == 3:
-			if mana >= 20:
+			if mana >= 75:
 				var bullet3 = bullet_scene3.instantiate()
 				bullet3.global_position = bullethole.global_position
 				bullet3.direction = (get_global_mouse_position() - global_position).normalized()
-				$/root/main.add_child(bullet3)
-				mana -= 20
+				get_tree().current_scene.add_child(bullet3)
+				mana -= 75
 	
 
 	mana_regen_timer += delta
@@ -83,8 +84,12 @@ func _physics_process(delta: float) -> void:
 	
 func playerbullet1hit():
 	player_health = player_health - 10
+	$ouch.play()
+	$AnimationPlayer.play("damagetaken")
 func playerspiralbullethit():
 	player_health = player_health - 2
+	$ouch.play()
+	$AnimationPlayer.play("damagetaken")
 func _on_heal_timer_timeout() -> void:
 	if player_health < max_health:
 		player_health = min(player_health + 1, max_health)

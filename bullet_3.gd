@@ -1,18 +1,25 @@
 extends Area2D
+
 var direction : Vector2
-var speed = 3
+var speed = 1
+var is_hit = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	global_position += direction * speed
-	await get_tree().create_timer(0.5).timeout
+	if not is_hit:
+		global_position += direction * speed
+
+	await get_tree().create_timer(10.0).timeout
 	queue_free()
+
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("boss"):
+	if body.is_in_group("boss") and not is_hit:
+		is_hit = true
+		$Bullet.visible = false 
+		speed = 0 
+		$GPUParticles2D.emitting = true
 		Signalmanager.bullet3hitboss.emit()
+		await get_tree().create_timer(1.0).timeout
 		queue_free()

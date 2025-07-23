@@ -1,17 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqxj3dyrilqnq"]
+[gd_scene load_steps=7 format=3 uid="uid://cqxj3dyrilqnq"]
 
 [ext_resource type="Script" uid="uid://dp2u156nagtxc" path="res://bullet_1.gd" id="1_hsp2q"]
+[ext_resource type="Texture2D" uid="uid://bkw33llnuobjb" path="res://syntax assets/guns/bullet.png" id="2_7f4k7"]
+[ext_resource type="Texture2D" uid="uid://qvlibyjgscjb" path="res://syntax assets/guns/bulletttt.png" id="3_f7cwy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kdfmp"]
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_f7cwy"]
+diffuse_texture = ExtResource("2_7f4k7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7f4k7"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 15.69
+initial_velocity_max = 15.69
+gravity = Vector3(0, 0, 0)
+damping_min = 7.059
+damping_max = 13.726
+scale_min = 0.05
+scale_max = 0.07
+
 [node name="bullet" type="Area2D"]
+scale = Vector2(0.86, 0.86)
 script = ExtResource("1_hsp2q")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 color = Color(0.501407, 0.501406, 0.501406, 1)
 polygon = PackedVector2Array(-8, -6, -10, -1, -9, 4, -6, 8, -1, 10, 4, 9, 8, 6, 10, 2, 9, -4, 6, -8, 1, -10, -4, -9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kdfmp")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.555266, 0.382754, 0.710282, 1)
+scale = Vector2(2.06, 2.06)
+emitting = false
+amount = 100
+texture = SubResource("CanvasTexture_f7cwy")
+one_shot = true
+speed_scale = 3.25
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_7f4k7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.465, 0.465)
+texture = ExtResource("3_f7cwy")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

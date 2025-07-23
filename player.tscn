@@ -1,27 +1,103 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnlvw7h670ugb"]
+[gd_scene load_steps=10 format=3 uid="uid://bnlvw7h670ugb"]
 
 [ext_resource type="Script" uid="uid://cya1jts7drbyq" path="res://character_body_2d.gd" id="1_onrkg"]
+[ext_resource type="AudioStream" uid="uid://ddd7md6te5yy" path="res://ouch.mp3" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://dyysoceugkbkg" path="res://syntax assets/monster/playermaybe.png" id="3_hqtel"]
+[ext_resource type="Texture2D" uid="uid://dj1w6ecb5yn80" path="res://syntax assets/guns/ak.png" id="4_sweqy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(118, 116)
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqtel"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_hqtel"]
+
+[sub_resource type="Animation" id="Animation_hqtel"]
+resource_name = "damagetaken"
+length = 0.266
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.47451, 0.160784, 0.231373, 0.34902), Color(0.47451, 0.160784, 0.231373, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sweqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.47451, 0.160784, 0.231373, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2hs0m"]
+_data = {
+&"RESET": SubResource("Animation_sweqy"),
+&"damagetaken": SubResource("Animation_hqtel")
+}
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 3)
-shape = SubResource("RectangleShape2D_onrkg")
+scale = Vector2(6.195, 6.195)
+shape = SubResource("CircleShape2D_hqtel")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 color = Color(0.6145, 0.191914, 0.509757, 1)
 polygon = PackedVector2Array(-28, -55, -60, -31, -61, 13, -37, 62, 8, 62, 35, 58, 60, 8, 59, -39, 25, -60)
 
 [node name="gun" type="Polygon2D" parent="."]
+visible = false
 color = Color(0.67451, 0.72549, 0.12549, 1)
 polygon = PackedVector2Array(56, -27, 113, -27, 115, -11, 74, -11, 74, 7, 54, 7)
 
 [node name="bullethole" type="Node2D" parent="."]
-position = Vector2(110, -20)
+position = Vector2(122.93, -5.93)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.235, 1.235)
+
+[node name="ouch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_onrkg")
+volume_db = -5.0
+pitch_scale = 1.3
+
+[node name="Playermaybe" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("3_hqtel")
+
+[node name="Ak" type="Sprite2D" parent="."]
+position = Vector2(91, -1.43051e-06)
+scale = Vector2(2.21875, 1.89063)
+texture = ExtResource("4_sweqy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(0.47451, 0.160784, 0.231373, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_hqtel")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2hs0m")
+}

@@ -1,8 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqbuvcuxnx86i"]
+[gd_scene load_steps=7 format=3 uid="uid://dqbuvcuxnx86i"]
 
 [ext_resource type="Script" uid="uid://dr804shtt3qc4" path="res://someattack.gd" id="1_lveh0"]
+[ext_resource type="Texture2D" uid="uid://cfv1bj12q852h" path="res://syntax assets/guns/bullet3.png" id="2_f2pch"]
+[ext_resource type="Texture2D" uid="uid://bkw33llnuobjb" path="res://syntax assets/guns/bullet.png" id="3_7ff00"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lveh0"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_gho8l"]
+diffuse_texture = ExtResource("3_7ff00")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ysjl1"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 15.69
+initial_velocity_max = 15.69
+gravity = Vector3(0, 0, 0)
+damping_min = 7.059
+damping_max = 13.726
+scale_min = 0.05
+scale_max = 0.07
 
 [node name="enemybulletsomeattack" type="Area2D"]
 script = ExtResource("1_lveh0")
@@ -12,6 +28,11 @@ position = Vector2(-20, 0)
 scale = Vector2(0.615, 0.615)
 color = Color(0.939331, 0.0102104, 5.77569e-07, 1)
 polygon = PackedVector2Array(-8, -6, -10, -1, -9, 4, -6, 8, -1, 10, 4, 9, 8, 6, 10, 2, 9, -4, 6, -8, 1, -10, -4, -9)
+
+[node name="Bullet3" type="Sprite2D" parent="Polygon2D"]
+position = Vector2(0, 1.62602)
+scale = Vector2(0.577236, 0.577236)
+texture = ExtResource("2_f2pch")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-20, 0)
@@ -24,9 +45,25 @@ scale = Vector2(0.615, 0.615)
 color = Color(0.989844, 5.48691e-06, 9.62615e-07, 1)
 polygon = PackedVector2Array(-8, -6, -10, -1, -9, 4, -6, 8, -1, 10, 4, 9, 8, 6, 10, 2, 9, -4, 6, -8, 1, -10, -4, -9)
 
+[node name="Bullet4" type="Sprite2D" parent="Polygon2D2"]
+position = Vector2(0, 1.62602)
+scale = Vector2(0.577236, 0.577236)
+texture = ExtResource("2_f2pch")
+
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(20, 0)
 scale = Vector2(0.615, 0.615)
 shape = SubResource("CircleShape2D_lveh0")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.555266, 0.382754, 0.710282, 1)
+scale = Vector2(2.06, 2.06)
+emitting = false
+amount = 100
+texture = SubResource("CanvasTexture_gho8l")
+one_shot = true
+speed_scale = 3.25
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_ysjl1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

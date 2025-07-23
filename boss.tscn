@@ -1,10 +1,105 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxvkols3ds25"]
+[gd_scene load_steps=17 format=3 uid="uid://bxvkols3ds25"]
 
 [ext_resource type="Script" uid="uid://bbq4u78ek05mp" path="res://boss.gd" id="1_0bnu1"]
 [ext_resource type="Texture2D" uid="uid://baxivd4ofg7w3" path="res://syntax assets/monster/void.png" id="2_6xxrv"]
+[ext_resource type="Texture2D" uid="uid://ldfh5cqhue0u" path="res://syntax assets/monster/void2.png" id="3_skx2t"]
+[ext_resource type="AudioStream" uid="uid://ddd7md6te5yy" path="res://ouch.mp3" id="4_lnbgr"]
+[ext_resource type="Texture2D" uid="uid://bkw33llnuobjb" path="res://syntax assets/guns/bullet.png" id="5_o1i15"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mihky"]
 radius = 71.1758
+
+[sub_resource type="Animation" id="Animation_6xxrv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node/Void:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node/Void2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0bnu1"]
+resource_name = "spiralnode"
+length = 5.574
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_lnbgr"]
+resource_name = "blink"
+length = 1.83
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node/Void:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.49, 1, 1.49),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node/Void2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.49, 1, 1.49),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.86, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 5), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_skx2t"]
+_data = {
+&"RESET": SubResource("Animation_6xxrv"),
+&"blink": SubResource("Animation_lnbgr"),
+&"spiralnode": SubResource("Animation_0bnu1")
+}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0bnu1"]
 albedo_color = Color(0.195906, 0.0767316, 0.00926043, 1)
@@ -19,45 +114,22 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_skx2t"]
 gradient = SubResource("Gradient_6xxrv")
 
-[sub_resource type="Animation" id="Animation_6xxrv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("bullethole2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(81.715, 0)]
-}
+[sub_resource type="CanvasTexture" id="CanvasTexture_we8h1"]
+diffuse_texture = ExtResource("5_o1i15")
 
-[sub_resource type="Animation" id="Animation_0bnu1"]
-resource_name = "spiralnode"
-length = 5.574
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("bullethole2:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 1.03333, 2.3, 3.7, 5.26667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(81.715, 0), Vector2(0, -90), Vector2(-78, 0), Vector2(0, 85), Vector2(81.76, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_skx2t"]
-_data = {
-&"RESET": SubResource("Animation_6xxrv"),
-&"spiralnode": SubResource("Animation_0bnu1")
-}
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kvofc"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 15.69
+initial_velocity_max = 15.69
+gravity = Vector3(0, 0, 0)
+damping_min = 7.059
+damping_max = 13.726
+scale_min = 0.15
+scale_max = 0.15
 
 [node name="boss" type="CharacterBody2D" groups=["boss"]]
+position = Vector2(0, 5)
 script = ExtResource("1_0bnu1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -68,15 +140,7 @@ visible = false
 polygon = PackedVector2Array(-4, -80, -78, -2, -5, 73, 75, 4)
 
 [node name="bullethole" type="Node2D" parent="."]
-
-[node name="bullethole2" type="Node2D" parent="."]
-position = Vector2(81.715, 0)
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="bullethole2"]
-position = Vector2(8.24, 7.25)
-scale = Vector2(20, 15.5)
-mesh = SubResource("BoxMesh_0bnu1")
-texture = SubResource("GradientTexture1D_skx2t")
+position = Vector2(0, -5.015)
 
 [node name="bullethole3" type="Node2D" parent="."]
 position = Vector2(-38.165, 0)
@@ -86,7 +150,42 @@ libraries = {
 &"": SubResource("AnimationLibrary_skx2t")
 }
 
-[node name="Void" type="Sprite2D" parent="."]
+[node name="Node" type="Node2D" parent="."]
+
+[node name="Void2" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(-2.27374e-13, 0)
+scale = Vector2(4.285, 4.285)
+texture = ExtResource("3_skx2t")
+
+[node name="Void" type="Sprite2D" parent="Node"]
 position = Vector2(1.90735e-06, -2.86102e-06)
 scale = Vector2(4.285, 4.285)
 texture = ExtResource("2_6xxrv")
+
+[node name="bullethole2" type="Node2D" parent="Node"]
+position = Vector2(0, 8.915)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Node/bullethole2"]
+visible = false
+position = Vector2(8.24, 7.25)
+scale = Vector2(20, 15.5)
+mesh = SubResource("BoxMesh_0bnu1")
+texture = SubResource("GradientTexture1D_skx2t")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_lnbgr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lnbgr")
+volume_db = -10.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.555266, 0.382754, 0.710282, 1)
+scale = Vector2(2.63, 2.63)
+emitting = false
+amount = 265
+texture = SubResource("CanvasTexture_we8h1")
+lifetime = 4.4
+speed_scale = 2.15
+process_material = SubResource("ParticleProcessMaterial_kvofc")
