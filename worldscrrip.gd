@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 func bossdead():
 	$CanvasLayer/AnimationPlayer.play("afterdeathboss")
 	await get_tree().create_timer(4.0).timeout
-	get_tree().change_scene_to_packed(b)
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
